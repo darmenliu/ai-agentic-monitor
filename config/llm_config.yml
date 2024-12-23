@@ -1,0 +1,6 @@
+llm_backend:
+  type: openai
+  api_key: "sk-proj-1234567890"
+  model: "gpt-4o"
+  temperature: 0.5
+  base_url: "https://api.openai.com/v1"
