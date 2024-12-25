@@ -74,3 +74,7 @@ func (l *LLMBackend) GenerateText(ctx context.Context, prompt string) (string, e
 	}
 	return resp, nil
 }
+
+func (l *LLMBackend) GetModel() llms.Model {
+	return l.model
+}
