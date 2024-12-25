@@ -30,14 +30,10 @@ func (c *LLMBackendYamlConfig) loadLLMConfig(configPath string) error {
 		return fmt.Errorf("error reading config file: %w", err)
 	}
 
-	fmt.Printf("file content is like %v", data)
-
 	cfg := LLMConfig{}
 	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return fmt.Errorf("error parsing config file: %w", err)
 	}
-
-	fmt.Printf("config is like %v", cfg)
 
 	c.config = cfg
 	if err := c.validate(); err != nil {
