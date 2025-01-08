@@ -194,7 +194,7 @@ func (tbs *MonitorAgent) parseOutput(output string) ([]schema.AgentAction, *sche
 	r := regexp.MustCompile(`(?s)Action: (.*?)\nAction_input:`)
 	matches := r.FindStringSubmatch(normalizedOutput)
 	if len(matches) == 0 {
-		logger.Error("NUWA TERMINAL: Unable to parse the output,", logger.Args("output", normalizedOutput))
+		logger.Error("ai-agentic-monitor: Unable to parse the output,", logger.Args("output", normalizedOutput))
 		return nil, nil, fmt.Errorf("%w: %s", agents.ErrUnableToParseOutput, normalizedOutput)
 	}
 	logger.Info("Matched:", logger.Args("match content for tool name:", matches[0]))

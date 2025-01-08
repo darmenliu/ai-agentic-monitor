@@ -78,14 +78,14 @@ func SaveScript(filename, content string) (string, error) {
 	scriptdir := filepath.Join(homedir, Catchdir, ScriptsDir)
 	err := os.MkdirAll(scriptdir, os.ModePerm)
 	if err != nil {
-		logger.Error("NUWA TERMINAL: failed to create script directory,", logger.Args("err", err.Error()))
+		logger.Error("ai-agentic-monitor: failed to create script directory,", logger.Args("err", err.Error()))
 		return "", err
 	}
 
 	scriptfile := filepath.Join(scriptdir, filename)
 	err = os.WriteFile(scriptfile, []byte(content), os.ModePerm)
 	if err != nil {
-		logger.Error("NUWA TERMINAL: failed to write script file,", logger.Args("err", err.Error()))
+		logger.Error("ai-agentic-monitor: failed to write script file,", logger.Args("err", err.Error()))
 		return "", err
 	}
 

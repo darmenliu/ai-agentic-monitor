@@ -34,7 +34,7 @@ func (m *MonitorImpl) Run(prompt string) error {
 	logger := pterm.DefaultLogger.WithLevel(pterm.LogLevelTrace)
 	llmbak, err := llmback.NewLLMBackend(context.Background(), m.config)
 	if err != nil {
-		logger.Error("NUWA TERMINAL: failed to get LLM backend,", logger.Args("err", err.Error()))
+		logger.Error("ai-agentic-monitor: failed to get LLM backend,", logger.Args("err", err.Error()))
 		return err
 	}
 
@@ -45,10 +45,10 @@ func (m *MonitorImpl) Run(prompt string) error {
 	executor := lcagents.NewExecutor(agent)
 	answer, err := chains.Run(context.Background(), executor, prompt)
 	if err != nil {
-		logger.Error("NUWA TERMINAL: failed to run agent,", logger.Args("err", err.Error()))
+		logger.Error("ai-agentic-monitor: failed to run agent,", logger.Args("err", err.Error()))
 		return err
 	}
 
-	fmt.Println("NUWA: " + answer)
+	fmt.Println("ai-agentic-monitor: " + answer)
 	return nil
 }
