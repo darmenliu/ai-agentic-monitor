@@ -14,8 +14,8 @@ func main() {
 		return
 	}
 
-	monitor := monitor.NewMonitor(config)
-	err = monitor.Run("check the status of the system if there are any issues like performence, memory, etc.")
+	monitor := monitor.NewMonitor(config, "check the status of the system if there are any issues like performence, memory, etc.")
+	err = monitor.Run()
 	if err != nil {
 		fmt.Println(err)
 		return

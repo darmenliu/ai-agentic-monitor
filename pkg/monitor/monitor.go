@@ -16,20 +16,22 @@ import (
 
 type Monitor interface {
 	// Monitor will monitor the system and return the status of the system.
-	Run(prompt string) error
+	Run() error
 }
 
 type MonitorImpl struct {
 	config config.LLMConfiger
+	prompt string
 }
 
-func NewMonitor(config config.LLMConfiger) Monitor {
+func NewMonitor(config config.LLMConfiger, prompt string) Monitor {
 	return &MonitorImpl{
 		config: config,
+		prompt: prompt,
 	}
 }
 
-func (m *MonitorImpl) Run(prompt string) error {
+func (m *MonitorImpl) Run() error {
 
 	logger := pterm.DefaultLogger.WithLevel(pterm.LogLevelTrace)
 	llmbak, err := llmback.NewLLMBackend(context.Background(), m.config)
@@ -43,7 +45,7 @@ func (m *MonitorImpl) Run(prompt string) error {
 	}
 	agent := agents.NewMonitorAgent(llmbak.GetModel(), agentTools, "output", nil)
 	executor := lcagents.NewExecutor(agent)
-	answer, err := chains.Run(context.Background(), executor, prompt)
+	answer, err := chains.Run(context.Background(), executor, m.prompt)
 	if err != nil {
 		logger.Error("ai-agentic-monitor: failed to run agent,", logger.Args("err", err.Error()))
 		return err
