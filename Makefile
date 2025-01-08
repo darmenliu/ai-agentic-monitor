@@ -18,7 +18,7 @@ GO_PATH=$(shell go env GOPATH)
 # Build the project
 build:
 	mkdir -p $(BUILD_DIR)
-	$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/main.go
+	$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/...
 
 # Clean build files
 clean:
