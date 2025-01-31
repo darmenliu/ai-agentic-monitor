@@ -34,7 +34,7 @@ func (m *MonitorManager) Run() error {
 	logger := pterm.DefaultLogger.WithLevel(pterm.LogLevelTrace)
 	for _, mon := range m.monitors {
 		go func(mon monitor.Monitor) {
-			ticker := time.NewTicker(interval_of_monitors * time.Second)
+			ticker := time.NewTicker(interval_of_monitors * time.Minute)
 			defer ticker.Stop()
 			for range ticker.C {
 				err := mon.Run()
